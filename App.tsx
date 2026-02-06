@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Layout from './components/Layout';
 import HomeScreen from './components/HomeScreen';
 import ChatScreen from './components/ChatScreen';
 import BibleScreen from './components/BibleScreen';
@@ -55,7 +53,6 @@ const App: React.FC = () => {
   // Efeito para garantir que o app sempre inicie na home quando aberto/recarregado
   useEffect(() => {
     if (!showSplash && session) {
-      // Força o roteamento para a raiz caso o usuário entre em uma URL profunda
       if (window.location.hash !== '#/') {
         window.location.hash = '#/';
       }
@@ -82,7 +79,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Layout>
+      <>
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/chat" element={<ChatScreen />} />
@@ -91,7 +88,7 @@ const App: React.FC = () => {
           <Route path="/profile" element={<ProfileScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </Layout>
+      </>
     </Router>
   );
 };
